@@ -19,6 +19,7 @@
             overflow: hidden;
             color: #fff;
             position: relative;
+            flex-direction: column;
         }
 
         .background {
@@ -37,6 +38,7 @@
             text-align: center;
             perspective: 1000px;
             display: none; /* Hide the container initially */
+            z-index: 1;
         }
 
         h1 {
@@ -131,11 +133,13 @@
         .carousel {
             display: none;
             width: 80%;
-            margin: 50px auto;
+            margin: 20px auto;
+            z-index: 1;
         }
 
         .carousel img {
-            width: 100%;
+            width: 200px; /* Set image width to 80px */
+            height: auto;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
@@ -201,12 +205,12 @@
         function showCarousel(category) {
             // Dummy data for games
             const games = {
-                "fighting": ["gow.jpg", "pop.jpg", "styx.jpg"],
-                "action-adventure": ["game4.jpg", "game5.jpg", "game6.jpg"],
-                "puzzle": ["game7.jpg", "game8.jpg", "game9.jpg"],
-                "platform": ["game10.jpg", "game11.jpg", "game12.jpg"],
-                "survival-horror": ["game13.jpg", "game14.jpg", "game15.jpg"],
-                "simulation": ["game16.jpg", "game17.jpg", "game18.jpg"]
+                "fighting": ["t7.jpg", "sf.jpeg", "c1.jpeg"],
+                "action-adventure": ["gow.jpg", "pop.jpg", "styx.jpg"],
+                "puzzle": ["mm.jpg", "w1.jpg", "s1.jpg"],
+                "platform": ["h1.jpg", "q1.png", "hp1.jpeg"],
+                "survival-horror": ["thos.jpg", "re4.jpg", "fd1.jpg"],
+                "simulation": ["vb1.jpeg", "aab2.jpg", "coc.jpeg"]
             };
 
             const carousel = document.querySelector('.carousel');
