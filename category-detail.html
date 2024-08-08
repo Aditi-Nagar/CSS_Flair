@@ -23,6 +23,13 @@
             color: #fff;
         }
 
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #00bfff;
+            text-transform: capitalize;
+        }
+
         .carousel {
             width: 80%;
             margin: 20px auto;
@@ -33,6 +40,11 @@
             height: auto;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .carousel img:hover {
+            transform: rotateY(15deg) rotateX(15deg) scale(1.1);
         }
     </style>
 </head>
