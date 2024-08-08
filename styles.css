@@ -1,0 +1,62 @@
+body{
+    background-color: rgb(255, 228, 88);
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+}
+
+.logo {
+    position: absolute;
+    top: 30px; /* Adjust as needed */
+    left: 30px; /* Adjust as needed */
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .menu {
+    position: absolute;
+    top: 30px; /* Adjust as needed */
+    right: 30px; /* Adjust as needed */
+    width: 40px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .bauhaus-text {
+    font-family: 'Bauhaus 93', sans-serif; /* Use Bauhaus 93 font with fallback to sans-serif */
+    font-size: 73px; /* Adjust font size to 73 */
+    line-height: 80px; /* Adjust line height to create three lines */
+    color: black; /* Adjust font color as needed */
+    position: absolute; /* Adjust positioning as needed */
+    top: 120px; /* Adjust top position as needed */
+    left: 190px; /* Adjust left position as needed */
+    width: 700px; /* Adjust width to limit the text to three lines */
+    text-align:inherit; /* Align text to the center */
+  }
+  
+  .bottom-picture-wrapper .bottom-picture {
+    position: absolute;
+    
+    top: 450px; /* Position at the bottom */
+    left: 700px; /* Align to the left */
+    width: 35%; /* Occupy full width */
+    height: auto; /* Maintain aspect ratio */
+    transform: translateX(-50%);
+    transition: transform 1s ease, opacity 1s ease; /* Add transition for smooth animation */
+
+  }
+  
+  .rotate-and-disappear {
+  transform: translateX(-50%) rotate(45deg); /* Rotate the picture 45 degrees and keep it centered */
+  opacity: 0; /* Make the picture disappear */
+}
+  
+  
+  @keyframes moveOut {
+    from {
+      opacity: 1; /* Start with full opacity */
+      transform: translateY(0); /* Start at original position */
+    }
+    to {
+      opacity: 0; /* End with opacity 0 */
+      transform: translateY(100vh); /* Move down by viewport height */
+    }
+  }

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url(bgim.jpg) no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.4);
+            max-width: 400px;
+            width: 100%;
+            display: none; /* Hide the container initially */
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 24px;
+            text-align: center;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff, 0 0 40px #00ffff, 0 0 50px #ff00ff;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff;
+            font-size: 16px;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff;
+        }
+        .container input[type="text"],
+        .container input[type="number"],
+        .container select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.3);
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+        }
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        .container input[type="submit"]:hover {
+            background-color: #00ffff;
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+        }
+        #preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff;
+            flex-direction: column;
+        }
+        #preloader p {
+            margin: 0;
+            font-size: 18px;
+        }
+        .loading-bar {
+            position: relative;
+            width: 80%;
+            height: 10px; /* Thinner loading bar */
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .loading-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background-color: #ff00ff;
+            border-radius: 5px;
+        }
+        .rocket {
+            position: absolute;
+            top: -20px; /* Adjusted to align with the thinner bar */
+            left: 0;
+            width: 30px; /* Thinner rocket */
+            height: 30px;
+            background: url('rocket.png') no-repeat center center;
+            background-size: contain;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        Loading...
+        <p id="counter">0%</p>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+            <div class="rocket" id="rocket"></div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Hey! Let's know more about you</h1>
+        <form id="userForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            
+            <label for="experience">Experience:</label>
+            <select id="experience" name="experience" required>
+                <option value="">Select your experience level</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="expert">Expert</option>
+            </select>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const preloader = document.getElementById('preloader');
+            const container = document.querySelector('.container');
+            const counter = document.getElementById('counter');
+            const loadingProgress = document.getElementById('loadingProgress');
+            const rocket = document.getElementById('rocket');
+            let count = 0;
+
+            const interval = setInterval(() => {
+                count++;
+                counter.textContent = count + '%';
+                loadingProgress.style.width = count + '%';
+                rocket.style.left = count + '%';
+                if (count === 100) {
+                    clearInterval(interval);
+                }
+            }, 50); // 5000ms / 100 increments = 50ms per increment
+
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                    container.style.display = 'block';
+                }, 5000); // 5 seconds delay
+            });
+        });
+
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Capture form data
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const experience = document.getElementById('experience').value;
+
+            // Optionally, store data in localStorage or pass it as query parameters
+            // localStorage.setItem('userName', name);
+            // localStorage.setItem('userAge', age);
+            // localStorage.setItem('userExperience', experience);
+
+            // Redirect to the category page
+            window.location.href = "category.html";
+        });
+    </script>
+</body>
+</html>
