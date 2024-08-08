@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Category Details</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: url(bgim.jpg) no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        .carousel {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .carousel img {
+            width: 80px; /* Set image width to 80px */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="category-title">Category</h1>
+    <div class="carousel"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+
+            const games = {
+                "fighting": ["t7.jpg", "sf.jpeg", "c1.jpeg"],
+                "action-adventure": ["gow.jpg", "pop.jpg", "styx.jpg"],
+                "puzzle": ["mm.jpg", "w1.jpg", "s1.jpg"],
+                "platform": ["h1.jpg", "q1.png", "hp1.jpeg"],
+                "survival-horror": ["thos.jpg", "re4.jpg", "fd1.jpg"],
+                "simulation": ["vb1.jpeg", "aab2.jpg", "coc.jpeg"]
+            };
+
+            document.getElementById('category-title').textContent = category.replace("-", " ");
+
+            const carousel = document.querySelector('.carousel');
+            games[category].forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image;
+                carousel.appendChild(imgElement);
+            });
+
+            $(carousel).slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                dots: true,
+                arrows: true
+            });
+        });
+    </script>
+</body>
+</html>
